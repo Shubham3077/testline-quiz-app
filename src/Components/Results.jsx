@@ -1,6 +1,6 @@
 import React from 'react'
 import quizCompletedImg from '../assets/quiz-complete.png'
-import QUESTIONS from '../Questions'
+import QUESTIONS from '../questions.js'
 
 
 const Results = ({ userAnswers }) => {

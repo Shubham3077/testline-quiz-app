@@ -1,6 +1,6 @@
 // show current active question, take answers then switch to new ques. 
 import React, { useState, useCallback, } from 'react'
-import QUESTIONS from '../Questions'
+import QUESTIONS from '../questions.js'
 import Questions from './Questions'
 import Results from './Results'
 
