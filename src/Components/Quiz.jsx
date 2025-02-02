@@ -9,13 +9,11 @@ const Quiz = () => {
   // more optimized: we take 1 ans from user and then move to other ques based on length of userAnswer array, hence managing 1 less state ie of questions  
 
   const [userAnswers, setUserAnswers] = useState([])
-  const activeQuestionIndex = userAnswers.length
-
+  const activeQuestionIndex = userAnswers.length;
+  const [startQuiz, setStartQuiz] = useState(false)
 
   const handleSelectAnswer = useCallback((selectedAns) => {
-    setUserAnswers((prevUserAns) => [...prevUserAns, selectedAns]) // updating state based on the previous state 
-    // color of selected ans
-    // setAnswerStatus("answered")   
+    setUserAnswers((prevUserAns) => [...prevUserAns, selectedAns]) // updating state based on the previous state  
 
     // setTimeout(() => {
     //   if(selectedAns.isCorrect === QUESTIONS[activeQuestionIndex].options[0].isCorrect) {
@@ -31,7 +29,7 @@ const Quiz = () => {
     
   }, [])
 
-  const handleSkipAnswer = useCallback(() => handleSelectAnswer(null), [handleSelectAnswer])
+  const handleSkipAnswer = useCallback(() => handleSelectAnswer(null), [handleSelectAnswer]);
 
   // no of answers should = no of questions & quiz is over
   const quizCompletion = activeQuestionIndex === QUESTIONS.length;
@@ -40,14 +38,23 @@ const Quiz = () => {
     return <Results userAnswers={userAnswers}/>
   }
 
+  function handleStartQuiz(e) {
+    setStartQuiz(true)
+  }
+
   return (
-    <div id='quiz'> 
-      <Questions 
-        key={activeQuestionIndex }
-        index={activeQuestionIndex}
-        onSelectAnswer={handleSelectAnswer}
-        onSkipAnswer={handleSkipAnswer}
-      />
+    <div id='quiz'>
+      {
+        startQuiz ? (<Questions
+          key={activeQuestionIndex}
+          index={activeQuestionIndex}
+          onSelectAnswer={handleSelectAnswer}
+          onSkipAnswer={handleSkipAnswer}
+        />
+        ) : <button onClick={handleStartQuiz} className='start-btn'>Start</button>
+      }
+      
+      
     </div>
   )
 }

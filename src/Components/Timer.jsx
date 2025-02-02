@@ -14,15 +14,13 @@ const Timer = ({timeout, onTimeout, mode}) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRemainingtime(prevRemainingTime => prevRemainingTime - 100)
+      setRemainingtime(prevRemainingTime => prevRemainingTime - 100);
     }, 100) 
 
     return () => {
       clearInterval(interval)
     } // cleanup func: runs by react before it runs effect func again or when this component is unmounted from the DOM.
   }, [])
-
-  // setInterval is a sideEffect which will create an loop, as we are changing the state in every 100miliseconds
 
   return (
     <progress id='question-time' max={timeout} value={remainingtime} className={mode}/>

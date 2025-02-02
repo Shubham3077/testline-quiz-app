@@ -1,13 +1,13 @@
 import React from 'react'
 import Timer from './Timer'
 import Answers from './Answers'
-import QUESTIONS from '../Questions'
+import QUESTIONS from '../questions.js'
 import { useState } from 'react'
 
 const Questions = ({ onSelectAnswer, onSkipAnswer, index,}) => {
   const [answer, setAnswer] = useState({
     selectedAnswer: "",
-    isCorrect: null // check
+    isCorrect: null 
   })
   
   // reset timer if answer is selected
